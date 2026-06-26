@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Permissions-Policy" content="encrypted-media=*, autoplay=*, fullscreen=*">
+<title>India vs Ireland T20 Live | CRICKCAST</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ─── TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --bg:        #06090f;
+  --bg2:       #0b1120;
+  --surface:   #0f1828;
+  --surface2:  #152030;
+  --border:    rgba(255,255,255,0.07);
+  --border-hi: rgba(255,107,0,0.35);
+  --orange:    #ff6b00;
+  --orange-dim:#b84d00;
+  --gold:      #fbbf24;
+  --cream:     #f5f0e8;
+  --muted:     #7a8fa8;
+  --text:      #e8edf5;
+  --blue-tg:   #229ED9;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── HEADER ─────────────────────────────────────────────────── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(6,9,15,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-mark svg { width: 18px; height: 18px; fill: #fff; }
+
+.brand-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #fff;
+  line-height: 1;
+}
+
+.brand-tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.live-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(220,30,30,0.12);
+  border: 1px solid rgba(220,30,30,0.4);
+  color: #ff4444;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 5px 11px;
+  border-radius: 20px;
+}
+
+.live-dot {
+  width: 6px; height: 6px;
+  background: #ff4444;
+  border-radius: 50%;
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.2; }
+}
+
+/* ─── MATCH HERO ──────────────────────────────────────────────── */
+.match-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 32px 20px 28px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(255,107,0,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 80% at 20% 50%, rgba(0,60,160,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 80% at 80% 50%, rgba(10,100,40,0.18) 0%, transparent 60%),
+    var(--bg2);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+/* Ambient floodlight streaks */
+.match-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, rgba(255,107,0,0.04) 0%, transparent 40%),
+    linear-gradient(200deg, rgba(0,100,255,0.04) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.series-label {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(251,191,36,0.1);
+  border: 1px solid rgba(251,191,36,0.25);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.fixture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 4vw, 48px);
+  margin-bottom: 14px;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 90px;
+}
+
+.team-flag {
+  font-size: clamp(36px, 8vw, 56px);
+  line-height: 1;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+}
+
+.team-code {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 7vw, 46px);
+  letter-spacing: 3px;
+  color: #fff;
+  line-height: 1;
+}
+
+.team-full {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.vs-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.vs-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(18px, 4vw, 28px);
+  letter-spacing: 3px;
+  color: var(--muted);
+}
+
+.match-type-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--orange);
+  background: rgba(255,107,0,0.1);
+  border: 1px solid rgba(255,107,0,0.3);
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.match-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.meta-item {
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.meta-item span { color: var(--text); font-weight: 500; }
+
+/* ─── CHANNEL SELECTOR ────────────────────────────────────────── */
+.selector-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.selector-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.channel-select {
+  flex: 1;
+  min-width: 200px;
+  max-width: 380px;
+  background: var(--surface2);
+  border: 1px solid var(--border-hi);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 9px 36px 9px 13px;
+  border-radius: 7px;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ff6b00' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 11px center;
+  background-color: var(--surface2);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.channel-select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(255,107,0,0.15);
+}
+
+.channel-select option {
+  background: #0f1828;
+}
+
+.fs-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 9px 15px;
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.fs-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+/* ─── PLAYER ──────────────────────────────────────────────────── */
+.player-shell {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 72vh;
+  background: #000;
+  overflow: hidden;
+}
+
+.player-shell iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Channel tag top-left */
+.ch-overlay {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(0,0,0,0.7);
+  border: 1px solid rgba(255,107,0,0.35);
+  border-radius: 5px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--orange);
+  letter-spacing: 0.8px;
+  pointer-events: none;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+}
+
+/* Watermark bottom-right */
+.wm {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.22);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ─── STATS STRIP ─────────────────────────────────────────────── */
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.stat-cell {
+  padding: 11px 14px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+
+.stat-cell:last-child { border-right: none; }
+
+.stat-key {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+
+.stat-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: var(--orange);
+}
+
+/* ─── TELEGRAM CTA ───────────────────────────────────────────── */
+.tg-banner {
+  margin: 0;
+  background: linear-gradient(135deg, #0b1828 0%, #0f1e30 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tg-copy h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.tg-copy p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 340px;
+}
+
+.tg-copy p strong { color: var(--text); font-weight: 600; }
+
+.tg-join {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--blue-tg);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 7px;
+  letter-spacing: 0.3px;
+  transition: opacity 0.15s, transform 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tg-join:hover { opacity: 0.88; transform: translateY(-1px); }
+.tg-join svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
+
+/* ─── FOOTER ──────────────────────────────────────────────────── */
+footer {
+  padding: 14px 20px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  line-height: 1.6;
+}
+
+footer a { color: var(--orange); text-decoration: none; }
+
+/* ─── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 540px) {
+  .player-shell { max-height: 58vw; }
+  .stats-strip { grid-template-columns: repeat(2, 1fr); }
+  .stat-cell:nth-child(2) { border-right: none; }
+  .stat-cell:nth-child(3),
+  .stat-cell:nth-child(4) { border-top: 1px solid var(--border); }
+}
+
+@media (max-width: 380px) {
+  .selector-bar { flex-direction: column; align-items: flex-start; }
+  .channel-select { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ══════════════════════════════════════════════════ -->
+<header>
+  <a class="brand" href="#">
+    <div class="brand-mark">
+      <!-- Cricket ball icon -->
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 2.07V7h2V4.07c3.39.49 6.16 2.94 7.07 6.18L17.31 11l1 1.73 2.62-1.51c.04.25.07.5.07.78 0 .28-.03.54-.07.8l-2.62-1.52-1 1.73 2.76 1.59c-.91 3.24-3.68 5.69-7.07 6.18V17h-2v3.07c-3.39-.49-6.16-2.94-7.07-6.18L7.69 13l-1-1.73-2.62 1.51C4.03 12.54 4 12.28 4 12s.03-.54.07-.78l2.62 1.52 1-1.73L4.93 9.4C5.84 6.16 8.61 3.56 11 3.07z"/></svg>
+    </div>
+    <div>
+      <div class="brand-name">CRICKCAST</div>
+      <span class="brand-tag">Live Cricket</span>
+    </div>
+  </a>
+  <div class="live-pill">
+    <span class="live-dot"></span>
+    LIVE
+  </div>
+</header>
+
+<!-- ═══ MATCH HERO ═══════════════════════════════════════════════ -->
+<section class="match-hero">
+  <div class="series-label">🏏 T20 International Series 2025</div>
+
+  <div class="fixture">
+    <!-- India -->
+    <div class="team">
+      <div class="team-flag">🇮🇳</div>
+      <div class="team-code">IND</div>
+      <div class="team-full">India</div>
+    </div>
+
+    <div class="vs-block">
+      <div class="vs-text">VS</div>
+      <div class="match-type-badge">T20</div>
+    </div>
+
+    <!-- Ireland -->
+    <div class="team">
+      <div class="team-flag">🇮🇪</div>
+      <div class="team-code">IRE</div>
+      <div class="team-full">Ireland</div>
+    </div>
+  </div>
+
+  <div class="match-meta">
+    <div class="meta-item">📍 <span>Dublin, Ireland</span></div>
+    <div class="meta-item">📅 <span>2025</span></div>
+    <div class="meta-item">🎙️ <span>Free HD Stream</span></div>
+  </div>
+</section>
+
+<!-- ═══ CHANNEL SELECTOR ═════════════════════════════════════════ -->
+<div class="selector-bar">
+  <span class="selector-label">Watch On:</span>
+
+  <select class="channel-select" id="channelSelect" onchange="switchChannel()">
+
+    <!-- ╔══════════════════════════════════════════════════════════╗
+         ║  ADD NEW CHANNELS BELOW THIS LINE                       ║
+         ║  Format:                                                 ║
+         ║  <option value="KEY">ICON Channel Name</option>         ║
+         ║  Then add entry in channels{} object in <script>        ║
+         ╚══════════════════════════════════════════════════════════╝ -->
+
+    <option value="ss1_eng">📺 Sony Sports English</option>
+    <option value="ss1_hin">🎙️ Sony Sports Hindi</option>
+
+    <!-- ╔══════════════════════════════════════════════════════════╗
+         ║  ADD NEW CHANNELS ABOVE THIS LINE                       ║
+         ╚══════════════════════════════════════════════════════════╝ -->
+
+  </select>
+
+  <button class="fs-btn" onclick="goFullscreen()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+      <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+    </svg>
+    Fullscreen
+  </button>
+</div>
+
+<!-- ═══ PLAYER ════════════════════════════════════════════════════ -->
+<div class="player-shell" id="playerShell">
+  <div class="ch-overlay" id="chLabel">Sony Sports English</div>
+
+  <iframe
+    id="streamFrame"
+    src="https://starse1.pages.dev"
+    allow="autoplay; fullscreen; encrypted-media; picture-in-picture; web-share; clipboard-write"
+    allowfullscreen
+    scrolling="no"
+    frameborder="0"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+
+  <div class="wm">CRICKCAST</div>
+</div>
+
+<!-- ═══ STATS STRIP ═══════════════════════════════════════════════ -->
+<div class="stats-strip">
+  <div class="stat-cell">
+    <div class="stat-key">Match</div>
+    <div class="stat-val">T20 Series</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-key">Format</div>
+    <div class="stat-val">20 Overs</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-key">Quality</div>
+    <div class="stat-val">HD Live</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-key">Channels</div>
+    <div class="stat-val">2 Active</div>
+  </div>
+</div>
+
+<!-- ═══ TELEGRAM CTA ══════════════════════════════════════════════ -->
+<div class="tg-banner">
+  <div class="tg-copy">
+    <h3>NEVER MISS A MATCH</h3>
+    <p>Join the <strong>CRICKCAST Telegram community</strong> for live match links, stream updates, highlights, and cricket news — all in one place.</p>
+  </div>
+  <a class="tg-join" href="https://t.me/addlist/6qALMSdKoVVkNWI1" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    Join CRICKCAST
+  </a>
+</div>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════════ -->
+<footer>
+  &copy; 2025 <a href="https://t.me/addlist/6qALMSdKoVVkNWI1" target="_blank">CRICKCAST</a>
+  &nbsp;·&nbsp; For entertainment purposes only &nbsp;·&nbsp; All rights belong to respective broadcasters
+</footer>
+
+<!-- ═══ SCRIPT ════════════════════════════════════════════════════ -->
+<script>
+
+  /* ╔═══════════════════════════════════════════════════════════════╗
+     ║  CHANNEL REGISTRY                                             ║
+     ║  To add a new channel:                                        ║
+     ║  1. Add <option> in the dropdown above (marked section)       ║
+     ║  2. Add entry here: "KEY": { name: "...", src: "https://..." } ║
+     ╚═══════════════════════════════════════════════════════════════╝ */
+
+  const channels = {
+    "ss1_eng": {
+      name: "Sony Sports English",
+      src:  "https://starse1.pages.dev"
+    },
+    "ss1_hin": {
+      name: "Sony Sports Hindi",
+      src:  "https://ss2h.pages.dev"
+    },
+
+    /* ── ADD NEW CHANNEL ENTRIES BELOW THIS LINE ─────────────────
+    "channel_key": {
+      name: "Channel Display Name",
+      src:  "https://your-iframe-url.pages.dev"
+    },
+    ── ADD NEW CHANNEL ENTRIES ABOVE THIS LINE ─────────────────── */
+  };
+
+  /* ── Channel switching ──────────────────────────────────────── */
+  function switchChannel() {
+    const key = document.getElementById('channelSelect').value;
+    const ch  = channels[key];
+    if (!ch) return;
+    document.getElementById('streamFrame').src = ch.src;
+    document.getElementById('chLabel').textContent = ch.name;
+  }
+
+  /* ── Fullscreen ─────────────────────────────────────────────── */
+  function goFullscreen() {
+    const el = document.getElementById('playerShell');
+    if      (el.requestFullscreen)       el.requestFullscreen();
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+    else if (el.mozRequestFullScreen)    el.mozRequestFullScreen();
+  }
+
+</script>
+
+</body>
+</html>
